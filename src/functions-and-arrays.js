@@ -19,11 +19,13 @@ const words = [
 ];
 
 function findLongestWord(words) {
-  let maxLength = 0;
+  if (words.length === 0) return null;
+  let longestWord = words[0];
   for (const word of words) {
-    maxLength = maxLength < word.length ? word.length : maxLength;
+    if (word.length > longestWord.length) longestWord = word;
   }
-  return maxLength;
+
+  return longestWord;
 }
 
 // -----------------------------------------------------------
@@ -51,6 +53,9 @@ function sum(mixedArr) {
       sum += item.length;
     } else if (typeof item === "boolean") {
       sum += item ? 1 : 0;
+    } else {
+      // Si el tipo no es válido, lanzamos un error
+      throw new Error("Unsupported data type sir or ma'am");
     }
   }
   return sum;
@@ -61,7 +66,7 @@ function sum(mixedArr) {
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 function averageNumbers(numbersAvg) {
-  if (numbersAvg.length === 0) return 0;
+  if (numbersAvg.length === 0) return null;
   let sum = 0;
   for (const number of numbersAvg) sum += number;
   return sum / numbersAvg.length;
@@ -84,7 +89,7 @@ const wordsArr = [
 ];
 
 function averageWordLength(wordsArr) {
-  if (wordsArr.length === 0) return 0;
+  if (wordsArr.length === 0) return null;
   let sum = 0;
   for (const word of wordsArr) sum += word.length;
   return sum / wordsArr.length;
@@ -96,7 +101,7 @@ function averageWordLength(wordsArr) {
 // const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 // should return: 5.7
 function avg(mixedArr) {
-  if (mixedArr.length === 0) return 0;
+  if (mixedArr.length === 0) return null;
   let sum = 0;
   for (const item of mixedArr) {
     if (typeof item === "number") {
@@ -128,6 +133,7 @@ const wordsUnique = [
 ];
 
 function uniquifyArray(wordsUnique) {
+  if (wordsUnique.length === 0) return null;
   const unique = [];
   for (let word of wordsUnique) if (!unique.includes(word)) unique.push(word);
   return unique;
@@ -148,6 +154,7 @@ const wordsFind = [
 ];
 
 function doesWordExist(wordsFind, word) {
+  if (wordsFind.length === 0) return null;
   return wordsFind.includes(word);
 }
 
@@ -169,6 +176,7 @@ const wordsCount = [
 ];
 
 function howManyTimes(wordsCount, word) {
+  if (wordsCount.length === 0) return 0;
   return wordsCount.filter((item) => item === word).length;
 }
 
